@@ -4,6 +4,6 @@ namespace SLoggerGrpc\Services;
 
 use Exception;
 
-class SLoggerGrpcResponseException extends Exception
+class GrpcResponseException extends Exception
 {
 }

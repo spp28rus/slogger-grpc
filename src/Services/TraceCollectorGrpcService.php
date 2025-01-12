@@ -10,10 +10,10 @@ use SLoggerGrpcDto\TraceCollector\TraceCreateRequest;
 use SLoggerGrpcDto\TraceCollector\TraceUpdateRequest;
 use Spiral\RoadRunner\GRPC;
 
-class SLoggerTraceCollectorGrpcService extends BaseStub implements TraceCollectorInterface
+class TraceCollectorGrpcService extends BaseStub implements TraceCollectorInterface
 {
     /**
-     * @throws SLoggerGrpcResponseException
+     * @throws GrpcResponseException
      */
     public function Create(GRPC\ContextInterface $ctx, TraceCreateRequest $in): TraceCollectorResponse
     {
@@ -25,7 +25,7 @@ class SLoggerTraceCollectorGrpcService extends BaseStub implements TraceCollecto
     }
 
     /**
-     * @throws SLoggerGrpcResponseException
+     * @throws GrpcResponseException
      */
     public function Update(GRPC\ContextInterface $ctx, TraceUpdateRequest $in): TraceCollectorResponse
     {
@@ -37,7 +37,7 @@ class SLoggerTraceCollectorGrpcService extends BaseStub implements TraceCollecto
     }
 
     /**
-     * @throws SLoggerGrpcResponseException
+     * @throws GrpcResponseException
      */
     private function sendRequest(
         GRPC\ContextInterface $ctx,
@@ -64,7 +64,7 @@ class SLoggerTraceCollectorGrpcService extends BaseStub implements TraceCollecto
         /** @var TraceCollectorResponse $response */
 
         if ($response->getStatusCode() !== 200) {
-            throw new SLoggerGrpcResponseException(
+            throw new GrpcResponseException(
                 message: $response->getMessage(),
                 code: $response->getStatusCode()
             );
